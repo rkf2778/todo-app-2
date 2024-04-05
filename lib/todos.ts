@@ -2,7 +2,11 @@ import prisma from './prisma'
 
 export async function getTodos() {
   try {
-    const todos = await prisma.todo.findMany()
+    const todos = await prisma.todo.findMany({
+      orderBy: {
+        createdAt: 'desc'
+      }
+    })
     return { todos }
   } catch (error) {
     return { error }
