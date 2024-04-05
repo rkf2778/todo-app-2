@@ -21,7 +21,7 @@ const TodoItem = ({ todo }: TodoItemProps) => {
   }
 
   return (
-    <li className='flex flex-wrap items-center gap-3'>
+    <li className='mb-2 flex flex-wrap items-center gap-3 rounded-r-md border-2 border-gray-500 p-1'>
       <input
         id={todo.id}
         type='checkbox'
@@ -45,7 +45,7 @@ const TodoItem = ({ todo }: TodoItemProps) => {
         onClick={() => deleteTodo(todo.id)}
         className='ml-2 rounded bg-slate-700 px-2 py-1 text-sm text-white disabled:bg-opacity-50'
       >
-        x
+        X
       </button>
     </li>
   )
