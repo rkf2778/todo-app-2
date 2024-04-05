@@ -3,7 +3,8 @@
 import { useTransition } from 'react'
 
 import { Todo } from '@prisma/client'
-import { updateTodoAction } from '@/app/_actions'
+import { updateTodoAction, deleteTodoAction } from '@/app/_actions'
+import { redirect } from 'next/navigation'
 
 type TodoItemProps = {
   todo: Todo
@@ -11,6 +12,11 @@ type TodoItemProps = {
 
 const TodoItem = ({ todo }: TodoItemProps) => {
   const [isPending, startTransition] = useTransition()
+
+  async function deleteTodo(id: string) {
+    await deleteTodoAction(id)
+    redirect('/')
+  }
 
   return (
     <li className='flex items-center gap-3'>
@@ -32,6 +38,13 @@ const TodoItem = ({ todo }: TodoItemProps) => {
       <span className='ml-auto text-sm text-slate-500 peer-checked:line-through'>
         {todo.updatedAt.toUTCString()}
       </span>
+      <button
+        type='button'
+        onClick={() => deleteTodo(todo.id)}
+        className='ml-2 rounded bg-slate-700 px-2 py-1 text-sm text-white disabled:bg-opacity-50'
+      >
+        x
+      </button>
     </li>
   )
 }

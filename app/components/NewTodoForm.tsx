@@ -1,17 +1,24 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { createTodoAction } from '@/app/_actions'
 
 const NewTodoForm = () => {
+  let [loader, setLoading] = useState(true)
   const formRef = useRef<HTMLFormElement>(null)
 
   async function action(data: FormData) {
-    const title = data.get('title')
-    if (typeof title !== 'string' || !title) return
+    setLoading(false) //False
+    // console.log('SET FALSE:', loader)
 
+    const title = data.get('title')
+    if (typeof title !== 'string' || !title || title.length < 0) return
     await createTodoAction(title)
-    formRef.current?.reset()
+    setTimeout(() => {
+      setLoading(true) //True
+      // console.log('SET TRUE:', loader)
+      formRef.current?.reset()
+    }, 1000)
   }
 
   return (
@@ -25,6 +32,7 @@ const NewTodoForm = () => {
       <button
         type='submit'
         className='ml-2 rounded bg-slate-700 px-2 py-1 text-sm text-white disabled:bg-opacity-50'
+        disabled={!loader}
       >
         Add Todo
       </button>
