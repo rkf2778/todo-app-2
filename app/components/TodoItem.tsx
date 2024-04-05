@@ -5,6 +5,7 @@ import { useTransition } from 'react'
 import { Todo } from '@prisma/client'
 import { updateTodoAction, deleteTodoAction } from '@/app/_actions'
 import { redirect } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 type TodoItemProps = {
   todo: Todo
@@ -15,7 +16,8 @@ const TodoItem = ({ todo }: TodoItemProps) => {
 
   async function deleteTodo(id: string) {
     await deleteTodoAction(id)
-    redirect('/')
+    toast.success('Todo Deleted Successfully')
+    // redirect('/')
   }
 
   return (

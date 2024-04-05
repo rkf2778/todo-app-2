@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react'
 import { createTodoAction } from '@/app/_actions'
+import toast from 'react-hot-toast'
 
 const NewTodoForm = () => {
   const [loader, setLoading] = useState(false) // Changed initial state to false
@@ -16,9 +17,11 @@ const NewTodoForm = () => {
     }
     try {
       await createTodoAction(title)
+      toast.success('Todo Added Successfully')
       setLoading(false) //True
       formRef.current?.reset()
     } catch (error) {
+      toast.error('Something went wrong')
       setLoading(false)
       console.error('Error creating todo:', error)
     }
