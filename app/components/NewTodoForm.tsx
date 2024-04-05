@@ -12,7 +12,10 @@ const NewTodoForm = () => {
     // console.log('SET FALSE:', loader)
 
     const title = data.get('title')
-    if (typeof title !== 'string' || !title || title.length < 0) return
+    if (typeof title !== 'string' || !title || title.length < 0) {
+      setLoading(true)
+      return
+    }
     await createTodoAction(title)
     setTimeout(() => {
       setLoading(true) //True
