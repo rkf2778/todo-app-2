@@ -1,8 +1,8 @@
 import { getTodos } from '@/lib/todos'
-
 import NewTodoForm from '@/components/NewTodoForm'
 import TodoItem from '@/components/TodoItem'
 import { unstable_noStore } from 'next/cache'
+import DeleteAllToDo from './components/DeleteAllToDo'
 
 // export const dynamic = 'force-dynamic'
 
@@ -18,10 +18,10 @@ const Page = async () => {
         </h1>
 
         <NewTodoForm />
-
-        <h2 className='mt-10 border-b pb-2 text-xl font-semibold'>
-          List of todos:
-        </h2>
+        <div className='my-7 flex items-center justify-between border-b'>
+          <h2 className=' text-xl font-semibold'>List of todos:</h2>
+          <DeleteAllToDo />
+        </div>
         <ul className='mt-4 flex flex-col gap-1'>
           {todos?.map(todo => <TodoItem key={todo.id} todo={todo} />)}
         </ul>

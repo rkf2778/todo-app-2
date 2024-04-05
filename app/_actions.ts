@@ -1,6 +1,6 @@
 'use server'
 
-import { createTodo, updateTodo, deleteTodo } from '@/lib/todos'
+import { createTodo, updateTodo, deleteTodo, deleteAllTodo } from '@/lib/todos'
 import { revalidatePath } from 'next/cache'
 
 export async function createTodoAction(title: string) {
@@ -15,5 +15,10 @@ export async function updateTodoAction(id: string, isCompleted: boolean) {
 
 export async function deleteTodoAction(id: string) {
   await deleteTodo(id)
+  revalidatePath('/')
+}
+
+export async function deleteAllToDoAction() {
+  await deleteAllTodo()
   revalidatePath('/')
 }

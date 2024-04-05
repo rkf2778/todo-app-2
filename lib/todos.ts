@@ -52,3 +52,11 @@ export async function deleteTodo(id: string) {
     return { error }
   }
 }
+
+export async function deleteAllTodo() {
+  try {
+    await prisma.todo.deleteMany({})
+  } catch (error) {
+    return { error }
+  }
+}
