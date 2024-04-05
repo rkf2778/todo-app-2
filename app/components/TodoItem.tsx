@@ -21,7 +21,7 @@ const TodoItem = ({ todo }: TodoItemProps) => {
   }
 
   return (
-    <li className='mb-2 flex flex-wrap items-center gap-3 rounded-r-md border-2 border-gray-500 p-1'>
+    <li className='duration-250 group mb-2 flex flex-wrap items-center gap-3 rounded border-2 border-gray-500 p-1 transition-all ease-in-out hover:-translate-y-1 hover:bg-slate-400 hover:text-white'>
       <input
         id={todo.id}
         type='checkbox'
@@ -37,7 +37,7 @@ const TodoItem = ({ todo }: TodoItemProps) => {
       >
         {todo.title}
       </label>
-      <span className='ml-auto text-sm text-slate-500 peer-checked:line-through'>
+      <span className='ml-auto text-sm text-slate-500 group-hover:text-white peer-checked:line-through'>
         {todo.updatedAt.toUTCString()}
       </span>
       <button
