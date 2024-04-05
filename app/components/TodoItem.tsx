@@ -21,7 +21,7 @@ const TodoItem = ({ todo }: TodoItemProps) => {
   }
 
   return (
-    <li className='flex items-center gap-3'>
+    <li className='flex flex-wrap items-center gap-3'>
       <input
         id={todo.id}
         type='checkbox'
@@ -33,7 +33,7 @@ const TodoItem = ({ todo }: TodoItemProps) => {
       />
       <label
         htmlFor={todo.id}
-        className='cursor-pointer peer-checked:text-slate-500 peer-checked:line-through'
+        className='break-all peer-checked:text-slate-500 peer-checked:line-through'
       >
         {todo.title}
       </label>
