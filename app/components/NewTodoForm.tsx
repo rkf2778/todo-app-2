@@ -4,24 +4,31 @@ import { useRef, useState } from 'react'
 import { createTodoAction } from '@/app/_actions'
 
 const NewTodoForm = () => {
-  let [loader, setLoading] = useState(true)
+  const [loader, setLoading] = useState(false) // Changed initial state to false
   const formRef = useRef<HTMLFormElement>(null)
 
   async function action(data: FormData) {
-    setLoading(false) //False
-    // console.log('SET FALSE:', loader)
-
+    setLoading(true) // Set loading to true when action starts
     const title = data.get('title')
     if (typeof title !== 'string' || !title || title.length < 0) {
-      setLoading(true)
+      setLoading(false) // Reset loading state if validation fails
       return
     }
-    await createTodoAction(title)
-    setTimeout(() => {
-      setLoading(true) //True
-      // console.log('SET TRUE:', loader)
+    try {
+      await createTodoAction(title)
+      setLoading(false) //True
       formRef.current?.reset()
-    }, 1000)
+    } catch (error) {
+      setLoading(false)
+      console.error('Error creating todo:', error)
+    }
+  }
+
+  function handleButtonClick() {
+    setLoading(true) // Set loading to true immediately upon clicking
+    formRef.current?.dispatchEvent(
+      new Event('submit', { bubbles: true, cancelable: true })
+    )
   }
 
   return (
@@ -35,9 +42,10 @@ const NewTodoForm = () => {
       <button
         type='submit'
         className='ml-2 rounded bg-slate-700 px-2 py-1 text-sm text-white disabled:bg-opacity-50'
-        disabled={!loader}
+        disabled={loader}
+        onClick={handleButtonClick}
       >
-        Add Todo
+        {loader ? 'Adding Todo...' : 'Add Todo'}
       </button>
     </form>
   )
