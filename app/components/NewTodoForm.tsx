@@ -39,6 +39,7 @@ const NewTodoForm = () => {
       <h2 className='mb-2 font-medium'>Create a New Todo</h2>
       <input
         type='text'
+        maxLength={100}
         name='title'
         className='rounded border border-slate-400 px-2 py-0.5'
       />
