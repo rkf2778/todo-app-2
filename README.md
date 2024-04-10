@@ -1,46 +1,76 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with
-[`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ToDo List App  
+A simple ToDo app made with Next.js 14, Prisma and Tailwind  
 
-## Getting Started
+# Live Demo [here](https://todo-list-rkf2778.vercel.app/)  
 
-First, run the development server:
+## Technologies & Frameworks  
+- Next.js
+- React
+- React-Dom
+- Prisma
+- Tailwind
+- Postcss
+- Autoprefixer
+- ESLint
+- Prettier
+- React Hot Toast
+- Typescript
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Versions used for the app :  
+Sure, here's the information in a tabular format:  
+
+| Package                  | Version   |
+|--------------------------|-----------|
+| @prisma/client           | ^5.12.1   |
+| @types/node              | 20.12.4   |
+| @types/react             | 18.2.74   |
+| @types/react-dom         | 18.2.24   |
+| autoprefixer             | 10.4.19   |
+| eslint                   | 8.57.0    |
+| eslint-config-next       | 14.1.4    |
+| next                     | 14.1.4    |
+| postcss                  | 8.4.38    |
+| react                    | 18.2.0    |
+| react-dom                | 18.2.0    |
+| react-hot-toast          | ^2.4.1    |
+| tailwindcss              | 3.4.3     |
+| typescript               | 5.4.4     |
+| @tailwindcss/forms       | ^0.5.7    |
+| prettier                 | ^3.2.5    |
+| prettier-plugin-tailwindcss | ^0.5.13 |
+| prisma                   | ^5.12.1   |
+
+## Getting Started  
+
+1. Install Node.js  
+2. Run the command :  
+```
+npm install
+```
+3. Create `.env` file
+```
+DATABASE_URL=add_your_db_url
+```
+To setup above URL, you could use `local database` or `cloud services` like [Railway](https://railway.app/) or [Neon](https://console.neon.tech/) or [PlanetScale](https://planetscale.com/) etc
+
+
+4. To actually create the tables in your database, you now can use the following command of the Prisma CLI:
+```
+npx prisma db push
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the
-result.
+(Optional - prisma studio)
+```
+npx prisma studio
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page
-auto-updates as you edit the file.
+Because Prisma Client is tailored to your own schema, you need to update it every time your Prisma schema file is changing by running the following command:
 
-This project uses
-[`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to
-automatically optimize and load Inter, a custom Google Font.
+```
+npx prisma generate
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out
-[the Next.js GitHub repository](https://github.com/vercel/next.js/) - your
-feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the
-[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
-
-Check out our
-[Next.js deployment documentation](https://nextjs.org/docs/deployment) for more
-details.
+5. RUN THE APP
+```
+npm run dev
+```
